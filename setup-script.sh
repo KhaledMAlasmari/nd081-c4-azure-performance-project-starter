@@ -2,7 +2,7 @@
 
 # Variables
 resourceGroup="acdnd-c4-project"
-location="westus"
+location="uksouth"
 osType="UbuntuLTS"
 vmssName="udacity-vmss"
 adminName="udacityadmin"
@@ -65,11 +65,13 @@ az vmss create \
   --backend-pool-name $bePoolName \
   --storage-sku $storageType \
   --load-balancer $lbName \
+  --lb-sku Standard
   --custom-data cloud-init.txt \
   --upgrade-policy-mode automatic \
   --admin-username $adminName \
   --generate-ssh-keys \
   --verbose 
+  
 
 echo "VM scale set created: $vmssName"
 
