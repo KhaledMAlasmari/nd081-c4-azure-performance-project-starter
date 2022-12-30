@@ -65,7 +65,7 @@ az vmss create \
   --backend-pool-name $bePoolName \
   --storage-sku $storageType \
   --load-balancer $lbName \
-  --lb-sku Standard
+  --lb-sku Standard \
   --custom-data cloud-init.txt \
   --upgrade-policy-mode automatic \
   --admin-username $adminName \
@@ -87,20 +87,6 @@ az network vnet subnet update \
 
 echo "NSG: $nsgName associated with subnet: $subnetName"
 
-# Create Health Probe
-echo "STEP 5 - Creating health probe $probeName"
-
-az network lb probe create \
-  --resource-group $resourceGroup \
-  --lb-name $lbName \
-  --name $probeName \
-  --protocol tcp \
-  --port 80 \
-  --interval 5 \
-  --threshold 2 \
-  --verbose
-
-echo "Health probe created: $probeName"
 
 # Create Network Load Balancer Rule
 echo "STEP 6 - Creating network load balancer rule $lbRule"
